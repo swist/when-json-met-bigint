@@ -1,7 +1,5 @@
 # when-json-met-bigint
-
 [![Build Status](https://app.travis-ci.com/haoadoresorange/when-json-met-bigint.svg?branch=main)](https://app.travis-ci.com/haoadoresorange/when-json-met-bigint)
-
 [![NPM](https://nodei.co/npm/when-json-met-bigint.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/when-json-met-bigint/)
 
 This is a fork of [json-bigint](https://github.com/sidorares/json-bigint), rewritten in TypeScript, no longer use `bignumber.js`, and being actively maintained. It also supports an ad-hoc parser API to solve `bigint`/`number` determinism.
