@@ -91,8 +91,9 @@ export const stringify = ((): typeof JSON.stringify => {
                     // Make an array to hold the partial results of stringifying this object value.
                     // The value is an array. Stringify every element. Use null as a placeholder
                     // for non-JSON values.
-                    const partial = value.map((_v_, i) => sStringify(i, value as unknown[]) || `null`);
-
+                    const partial = value.map((_v_, i) =>
+                        (sStringify(i, value as unknown[]) || `null`).split(`\n`).join(`\n` + s_indent),
+                    );
                     // Join all of the elements together, separated with commas, and wrap them in
                     // brackets.
                     return partial.length === 0
@@ -106,13 +107,15 @@ export const stringify = ((): typeof JSON.stringify => {
                 (Array.isArray(s_replacer) ? s_replacer : Object.keys(value)).forEach((key) => {
                     if (typeof key === `string` || typeof key === `number`) {
                         const key_string = key.toString();
-                        const v = sStringify(key_string, value as Record<string, unknown>);
+                        const v = (sStringify(key_string, value as Record<string, unknown>) || ``)
+                            .split(`\n`)
+                            .join(`\n` + s_indent);
+
                         if (v) {
-                            partial.push(quote(key_string) + (s_indent ? `: ` : `:`) + v);
+                            partial.push(quote(key_string) + (s_indent ? `: ` : s_indent + `:`) + v);
                         }
                     }
                 });
-
                 // Join all of the member texts together, separated with commas,
                 // and wrap them in braces.
                 return partial.length === 0

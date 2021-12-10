@@ -31,6 +31,7 @@
         "test": "jest",
         "semver": "yarn dev --upgrade && yarn upgrade && syncyarnlock -sk && yarn",
         "latest": "yarn dev --upgrade && yarn upgrade -L && syncyarnlock -sk && yarn",
+        "debug": "node --inspect-brk ./node_modules/.bin/jest",
         "benchmark": "yarn compile && node dist/benchmark.js && rimraf dist/benchmark*"
     },
     "lint-staged": {
